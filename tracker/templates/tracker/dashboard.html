@@ -1,0 +1,29 @@
+{% extends "tracker/base.html" %}
+{% block content %}
+<h1>Dashboard</h1>
+
+<h2>Subject Stats</h2>
+{% for entry in subject_stats %}
+    <div class="card">
+        <strong>{{ entry.subject.name }}</strong>
+        &mdash; {{ entry.total_hours }} hrs logged, {{ entry.streak }} day streak
+        {% if entry.from_cache %}
+            <span class="tag cache-hit">from cache</span>
+        {% else %}
+            <span class="tag cache-miss">recalculated</span>
+        {% endif %}
+    </div>
+{% empty %}
+    <p>No subjects yet. Add some in the admin panel.</p>
+{% endfor %}
+
+<h2>Top Priority Tasks</h2>
+{% for task in ranked_tasks %}
+    <div class="card">
+        <strong>{{ task.title }}</strong> ({{ task.subject.name }})
+        &mdash; due {{ task.deadline }}
+    </div>
+{% empty %}
+    <p>No pending tasks.</p>
+{% endfor %}
+{% endblock %}

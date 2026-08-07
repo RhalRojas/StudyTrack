@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>StudyTrack</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; color: #222; }
+        nav a { margin-right: 15px; }
+        .card { border: 1px solid #ddd; border-radius: 8px; padding: 12px 16px; margin-bottom: 10px; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; color: white; }
+        .cache-hit { background: #2e7d32; }
+        .cache-miss { background: #999; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #eee; }
+        form label { display: block; margin-top: 10px; }
+        input, select, button { padding: 6px; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="{% url 'dashboard' %}">Dashboard</a>
+        <a href="{% url 'task_list' %}">Tasks</a>
+        <a href="{% url 'log_session' %}">Log Session</a>
+    </nav>
+    <hr>
+    {% if messages %}
+        {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+    {% endif %}
+    {% block content %}{% endblock %}
+</body>
+</html>

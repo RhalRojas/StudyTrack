@@ -1,0 +1,24 @@
+{% extends "tracker/base.html" %}
+{% block content %}
+<h1>Log a Study Session</h1>
+<form method="post">
+    {% csrf_token %}
+    <label>Subject
+        <select name="subject" required>
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.name }}</option>
+            {% endfor %}
+        </select>
+    </label>
+    <label>Date
+        <input type="date" name="date" required>
+    </label>
+    <label>Hours studied
+        <input type="number" step="0.25" min="0.25" name="hours" required>
+    </label>
+    <label>Notes (optional)
+        <input type="text" name="notes">
+    </label>
+    <button type="submit">Save</button>
+</form>
+{% endblock %}
